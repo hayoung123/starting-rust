@@ -4,8 +4,8 @@ use std::io;
 
 fn main() {
   let mut count = 0;
-  let (a,b,c) = (get_random_number(),get_random_number(),get_random_number());
-  println!("정답은? {}{}{}",a,b,c);
+  let answer = get_baseball_answer();
+  println!("정답은? {}{}{}",answer[0],answer[1],answer[2]);
 
   loop{
     println!("숫자 세개를 순서대로 입력해주세요");
@@ -20,7 +20,7 @@ fn main() {
   
 
   
-    let (strike_count, ball_count) = check_result([a,b,c].to_vec(),get_char_from_number(guess));
+    let (strike_count, ball_count) = check_result(answer,get_char_from_number(guess));
   
     if strike_count==3 {
       println!("정답입니다! 총 시도 횟수는: {}번 입니다.",count);
@@ -34,6 +34,26 @@ fn main() {
 
 fn get_random_number() -> i32{
   return rand::thread_rng().gen_range(1, 10);
+}
+
+fn get_baseball_answer() -> Vec<i32>{
+  let answer:Vec<i32> = vec![];
+
+  loop{
+    let ran_number = get_random_number();
+
+    if answer.contains(&ran_number){
+      continue;
+    }else{
+      answer.push(ran_number);
+    }
+
+    if answer.len()==3 {
+      break;
+    }
+  }
+
+  return answer;
 }
 
 
