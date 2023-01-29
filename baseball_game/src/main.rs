@@ -20,7 +20,7 @@ fn main() {
   
 
   
-    let (strike_count, ball_count) = check_result(answer,get_char_from_number(guess));
+    let (strike_count, ball_count) = check_result(&answer,get_char_from_number(guess));
   
     if strike_count==3 {
       println!("정답입니다! 총 시도 횟수는: {}번 입니다.",count);
@@ -37,7 +37,7 @@ fn get_random_number() -> i32{
 }
 
 fn get_baseball_answer() -> Vec<i32>{
-  let answer:Vec<i32> = vec![];
+  let mut answer:Vec<i32> = vec![];
 
   loop{
     let ran_number = get_random_number();
@@ -57,7 +57,7 @@ fn get_baseball_answer() -> Vec<i32>{
 }
 
 
-fn check_result(answer:Vec<i32>, guess:Vec<i32>) -> (i32, i32){
+fn check_result(answer:&Vec<i32>, guess:Vec<i32>) -> (i32, i32){
   let mut strike_count = 0;
   let mut ball_count = 0;
 
